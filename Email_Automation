@@ -1,0 +1,78 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "0760ea7c-0433-4fe8-bb95-d10380c566b1",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "SMTPAuthenticationError",
+     "evalue": "(535, b'5.7.8 Username and Password not accepted. For more information, go to\\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3476a56009bsm5891766a91.6 - gsmtp')",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mSMTPAuthenticationError\u001b[0m                   Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[1], line 18\u001b[0m\n\u001b[0;32m     15\u001b[0m context \u001b[38;5;241m=\u001b[39m ssl\u001b[38;5;241m.\u001b[39mcreate_default_context()\n\u001b[0;32m     17\u001b[0m \u001b[38;5;28;01mwith\u001b[39;00m smtplib\u001b[38;5;241m.\u001b[39mSMTP_SSL(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124msmtp.gmail.com\u001b[39m\u001b[38;5;124m\"\u001b[39m, \u001b[38;5;241m465\u001b[39m, context\u001b[38;5;241m=\u001b[39mcontext) \u001b[38;5;28;01mas\u001b[39;00m server:\n\u001b[1;32m---> 18\u001b[0m     server\u001b[38;5;241m.\u001b[39mlogin(EMAIL, APP_PASSWORD)\n\u001b[0;32m     19\u001b[0m     server\u001b[38;5;241m.\u001b[39msend_message(msg)\n\u001b[0;32m     21\u001b[0m \u001b[38;5;28mprint\u001b[39m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mEmail sent successfully!\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n",
+      "File \u001b[1;32m~\\anaconda3\\Lib\\smtplib.py:750\u001b[0m, in \u001b[0;36mSMTP.login\u001b[1;34m(self, user, password, initial_response_ok)\u001b[0m\n\u001b[0;32m    747\u001b[0m         last_exception \u001b[38;5;241m=\u001b[39m e\n\u001b[0;32m    749\u001b[0m \u001b[38;5;66;03m# We could not login successfully.  Return result of last attempt.\u001b[39;00m\n\u001b[1;32m--> 750\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m last_exception\n",
+      "File \u001b[1;32m~\\anaconda3\\Lib\\smtplib.py:739\u001b[0m, in \u001b[0;36mSMTP.login\u001b[1;34m(self, user, password, initial_response_ok)\u001b[0m\n\u001b[0;32m    737\u001b[0m method_name \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m'\u001b[39m\u001b[38;5;124mauth_\u001b[39m\u001b[38;5;124m'\u001b[39m \u001b[38;5;241m+\u001b[39m authmethod\u001b[38;5;241m.\u001b[39mlower()\u001b[38;5;241m.\u001b[39mreplace(\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m-\u001b[39m\u001b[38;5;124m'\u001b[39m, \u001b[38;5;124m'\u001b[39m\u001b[38;5;124m_\u001b[39m\u001b[38;5;124m'\u001b[39m)\n\u001b[0;32m    738\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m--> 739\u001b[0m     (code, resp) \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauth(\n\u001b[0;32m    740\u001b[0m         authmethod, \u001b[38;5;28mgetattr\u001b[39m(\u001b[38;5;28mself\u001b[39m, method_name),\n\u001b[0;32m    741\u001b[0m         initial_response_ok\u001b[38;5;241m=\u001b[39minitial_response_ok)\n\u001b[0;32m    742\u001b[0m     \u001b[38;5;66;03m# 235 == 'Authentication successful'\u001b[39;00m\n\u001b[0;32m    743\u001b[0m     \u001b[38;5;66;03m# 503 == 'Error: already authenticated'\u001b[39;00m\n\u001b[0;32m    744\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m code \u001b[38;5;129;01min\u001b[39;00m (\u001b[38;5;241m235\u001b[39m, \u001b[38;5;241m503\u001b[39m):\n",
+      "File \u001b[1;32m~\\anaconda3\\Lib\\smtplib.py:662\u001b[0m, in \u001b[0;36mSMTP.auth\u001b[1;34m(self, mechanism, authobject, initial_response_ok)\u001b[0m\n\u001b[0;32m    660\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m code \u001b[38;5;129;01min\u001b[39;00m (\u001b[38;5;241m235\u001b[39m, \u001b[38;5;241m503\u001b[39m):\n\u001b[0;32m    661\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m (code, resp)\n\u001b[1;32m--> 662\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m SMTPAuthenticationError(code, resp)\n",
+      "\u001b[1;31mSMTPAuthenticationError\u001b[0m: (535, b'5.7.8 Username and Password not accepted. For more information, go to\\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3476a56009bsm5891766a91.6 - gsmtp')"
+     ]
+    }
+   ],
+   "source": [
+    "import smtplib\n",
+    "import ssl\n",
+    "from email.message import EmailMessage\n",
+    "\n",
+    "EMAIL = \"your mail\"\n",
+    "APP_PASSWORD = \"app passpord\"\n",
+    "RECEIVER = \"reciever mail\"\n",
+    "\n",
+    "msg = EmailMessage()\n",
+    "msg[\"From\"] = EMAIL\n",
+    "msg[\"To\"] = RECEIVER\n",
+    "msg[\"Subject\"] = \"HELLO Boss\"\n",
+    "msg.set_content(\"This email was shared by python code...\")\n",
+    "\n",
+    "context = ssl.create_default_context()\n",
+    "\n",
+    "with smtplib.SMTP_SSL(\"smtp.gmail.com\", 465, context=context) as server:\n",
+    "    server.login(EMAIL, APP_PASSWORD)\n",
+    "    server.send_message(msg)\n",
+    "\n",
+    "print(\"Email sent successfully!\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7555e3f8-bbf3-4728-bb40-e5b5067ed264",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
